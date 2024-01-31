@@ -1,8 +1,15 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from "@testing-library/react";
+import App from "./App";
 
-test('renders learn react link', () => {
+test("Stimulate login flow", () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  /*
+   TODO:
+    1. Fill in the username and password fields getByLabelText
+    2. type user name and password - fireEvent.change or userEvent.type
+    3. find the submit button - getByRole/findByRole
+    4. click the submit button - fireEvent.click or userEvent.click
+    5. add a assertion to check if submitted data is correct
+    6. mock onSubmit function to the App component and check if its getting called with correct username and password
+  */
 });
