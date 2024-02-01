@@ -2,21 +2,21 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import App from "./App";
 import userEvent from "@testing-library/user-event";
 
+const mockFuncSubmit=jest.fn();
+
 test("Stimulate login flow", () => {
-  render(<App />);
+  render(<App onSubmit={mockFuncSubmit}/>);
   // 1. Fill in the username and password fields getByLabelText
   const userNameInput = screen.getByLabelText("Username");
   const pwdInput = screen.getByLabelText("Password");
-
   userEvent.type(userNameInput, "Nandini");
   userEvent.type(pwdInput, "12345678");
-
   expect(userNameInput.value).toBe("Nandini");
   expect(pwdInput.value).toBe("12345678");
 
   // 2. type username and password - fireEvent.change or userEvent.type
   fireEvent.change(userNameInput, { target: { value: "Nandini Palakollu" } });
-  fireEvent.change(pwdInput, { target: { value: "12345678" } });
+  fireEvent.change(pwdInput, { target: { value: "123456" } });
 
   // 3. find the submit button - getByRole/findByRole
   const submitButton=screen.getByRole('button',{name:'Submit'});
@@ -26,11 +26,10 @@ test("Stimulate login flow", () => {
   fireEvent.click(submitButton);
 
   // 5. add an assertion to check if submitted data is correct
-  // const mockSubmitFunc=jest.fn();
-  // expect(mockSubmitFunc).toHaveBeenCalledWith({
-  //   username:"Nandini Palakollu",
-  //   password:"12345678"
-  // });
+  expect(mockFuncSubmit).toHaveBeenCalledWith({
+    username:"Nandini Palakollu",
+    password:"123456"
+  })
 });
 
 /*
