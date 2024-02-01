@@ -11,14 +11,14 @@ function Login({ onSubmit = () => {} }) {
     });
   }
   return (
-    <form onSubmit={handleSubmit}>
+    <form name="form" onSubmit={handleSubmit}>
       <div>
         <label htmlFor="username-field">Username</label>
         <input id="username-field" name="username" type="text" />
       </div>
       <div>
         <label htmlFor="password-field">Password</label>
-        <input id="password-field" name="password" type="password" />
+        <input id="password-field" name="password" type="text" />
       </div>
       <div>
         <button type="submit">Submit</button>
