@@ -19,7 +19,7 @@ function App() {
           Decrement
         </button>
       </div>
-      <h2 style={{ marginTop: "20px", alignItems: "center" }}>
+      <h2 data-testid="count-test" style={{ marginTop: "20px", alignItems: "center" }}>
         Counter Value is {count}
       </h2>
     </div>
