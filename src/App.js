@@ -43,7 +43,7 @@ function App() {
               clearInputVal();
               notification.success({
                 message: "Create Success",
-                description: `created todo named ${inputVal}`,
+                description: `created do named ${inputVal}`,
               });
             }
           }}
