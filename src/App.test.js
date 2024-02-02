@@ -36,7 +36,6 @@ test("Test counter App", () => {
   fireEvent.click(decrementButton);
   //assert if count value is 0 if below 0 it wont decrement
   expect(currCount).toHaveTextContent(0);
-  screen.debug(null, Infinity);
   /*
     hints:
     for getting dom elements use getBy/queryBy from screen
