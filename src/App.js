@@ -12,18 +12,24 @@ function App() {
           marginLeft: "10px",
         }}
       >
-        <button onClick={() => setCount((val) => val + 1)}>Increment</button>
-        <button
+
+        <h1>Counter</h1>
+        <button data-testid="increment-btn" onClick={() => setCount((val) => val + 1)}>Increment</button>
+        <button data-testid="decrement-btn"
           onClick={() => setCount((val) => (val - 1 >= 0 ? val - 1 : val))}
         >
           Decrement
         </button>
       </div>
-      <h2 style={{ marginTop: "20px", alignItems: "center" }}>
+      <h2 data-testid="count-val" style={{ marginTop: "20px", alignItems: "center" }}>
         Counter Value is {count}
       </h2>
     </div>
+
   );
 }
+
+
+
 
 export default App;
