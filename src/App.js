@@ -21,10 +21,12 @@ function Login({ onSubmit = () => {} }) {
         <input id="password-field" name="password" type="password" />
       </div>
       <div>
-        <button type="submit">Submit</button>
+        <button role="button" type="submit">Submit</button>
       </div>
     </form>
   );
 }
 
-export default Login;
+export default Login
+
+
