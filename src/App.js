@@ -18,12 +18,14 @@ function App() {
 
         <input
           type="text"
+          data-testid="input-box"
           value={inputVal}
           onChange={(e) => {
             setInputVal(e.target.value);
           }}
         />
         <button
+        data-testid="add-btn"
           type="submit"
           onClick={() => {
             if (inputVal === "") {
@@ -61,6 +63,7 @@ function App() {
                 >
                   {todo.name}
                   <Button
+                  data-testid="delete-btn"
                     type="primary"
                     icon={<DeleteOutlined />}
                     onClick={() => {
