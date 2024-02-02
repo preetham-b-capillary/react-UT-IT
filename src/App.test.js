@@ -1,8 +1,9 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, getByLabelText, getByRole, render, screen } from "@testing-library/react";
 import App from "./App";
 
+
 test("Stimulate login flow", () => {
-  render(<App />);
+
   /*
    TODO:
     1. Fill in the username and password fields getByLabelText
@@ -13,3 +14,70 @@ test("Stimulate login flow", () => {
     6. mock onSubmit function to the App component and check if its getting called with correct username and password
   */
 });
+
+
+describe("Testing Login form", () => {
+
+  test("filling username and password fields", () => {
+
+    render(<App />);
+    const username = screen.getByLabelText("Username")
+    const password = screen.getByLabelText("Password")
+    expect(username).toBeInTheDocument()
+    expect(password).toBeInTheDocument()
+
+    fireEvent.change(username, {
+      target: { value: "Nikhil" }
+    })
+
+    fireEvent.change(password, {
+      target: { value: "Joshi" }
+    })
+
+    expect(username.value).toBe("Nikhil")
+    expect(password.value).toBe("Joshi")
+  })
+
+
+  test("finding submit button", () => {
+    render(<App />)
+    const submitButton = screen.getByRole("button")
+    expect(submitButton).toBeInTheDocument()
+
+  })
+
+
+  test("testing the submit button", () => {
+    render(<App />)
+    const submitButton = screen.getByRole("button")
+    fireEvent.click(submitButton)
+
+  })
+
+
+  test('submits with correct username and password', () => {
+
+    const mockSubmit = jest.fn();
+    render(<App onSubmit={mockSubmit} />);
+
+
+    const username = screen.getByLabelText("Username")
+    const password = screen.getByLabelText("Password")
+    expect(username).toBeInTheDocument()
+    expect(password).toBeInTheDocument()
+
+
+
+    fireEvent.change(username, { target: { value: 'testuser' } });
+    fireEvent.change(password, { target: { value: 'testpassword' } });
+
+
+    const submitButton = screen.getByRole("button")
+    fireEvent.click(submitButton);
+
+
+    expect(mockSubmit).toHaveBeenCalled();
+  });
+
+
+})
