@@ -1,6 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import App from "./App";
-import { renderIntoDocument } from "react-dom/test-utils";
 /*
  TODO:
   1. Fill in the username and password fields getByLabelText
@@ -11,9 +10,9 @@ import { renderIntoDocument } from "react-dom/test-utils";
   6. mock onSubmit function to the App component and check if its getting called with correct username and password
 */
 test("filling details and submitting", () => {
-  const handleSubmitMock = jest.fn();
+  const mockhandleSubmitMock = jest.fn();
 
-  render(<App onSubmit={handleSubmitMock}/>)
+  render(<App onSubmit={mockhandleSubmitMock}/>)
   const user = screen.getByRole('textbox', {  name: /username/i});
   const pass = screen.getByRole('textbox', {  name: /password/i});
   const submit = screen.getByRole('button', {name: /submit/i});
@@ -25,7 +24,7 @@ test("filling details and submitting", () => {
     target: { value: "12345678" }
   });
   fireEvent.click(submit);
-  expect(handleSubmitMock).toHaveBeenLastCalledWith({
+  expect(mockhandleSubmitMock).toHaveBeenLastCalledWith({
     username: "Kushagra",
     password: "12345678"
   });
