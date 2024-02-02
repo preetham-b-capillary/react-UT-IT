@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import "./App.css";
 import { notification, Badge, Card, Button, Flex } from "antd";
 import lodash from "lodash";
@@ -7,7 +7,7 @@ import { DeleteOutlined } from "@ant-design/icons";
 function App() {
   const [todos, setTodos] = useState([]);
   const [inputVal, setInputVal] = useState("");
-  console.log("****todos", todos);
+  // console.log("****todos", todos);
   const clearInputVal = () => {
     setInputVal("");
   };
