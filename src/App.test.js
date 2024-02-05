@@ -7,10 +7,9 @@ import App from './App';
   if failure assert failure notification and new row should not be created
   if delete button clicked assert on notification and check if deleted data is not present in ui
 */
-jest.setTimeout(30000);
+jest.setTimeout(10000);
 
 test('checking if elements render', () => {
-  const mockhandleSubmit = jest.fn();
   render(<App />);
   
   expect(screen.getByRole('button', {  name: /add todo/i})).toBeInTheDocument();
@@ -19,7 +18,6 @@ test('checking if elements render', () => {
 
 
 test('checking if inserted data is present in ui on success', () => {
-  const mockhandleSubmit = jest.fn();
   render(<App />);
 
   const addTodo = screen.getByRole('button', {  name: /add todo/i});
@@ -33,7 +31,6 @@ test('checking if inserted data is present in ui on success', () => {
 });
 
 test('checking if invalid data is absent from ui on failure', () => {
-  const mockhandleSubmit = jest.fn();
   render(<App />);
 
   const addTodo = screen.getByRole('button', {  name: /add todo/i});
@@ -47,7 +44,6 @@ test('checking if invalid data is absent from ui on failure', () => {
 });
 
 test('checking if data is deleted from ui on clicking delete button', async () => {
-  const mockhandleSubmit = jest.fn();
   render(<App />);
 
   const addTodo = screen.getByRole('button', {  name: /add todo/i});
@@ -56,12 +52,12 @@ test('checking if data is deleted from ui on clicking delete button', async () =
     target: {value: "New task"}
   });
   fireEvent.click(addTodo);
-  await new Promise((r) => setTimeout(r, 10000));
-  const task = screen.getByText(/New Task/i);
-  expect(task).toBeInTheDocument();
+  
+  const addedAlert = await screen.findAllByText(/created todo named New Task/i);
+  expect(addedAlert[0]).toBeInTheDocument();
+  const task = await screen.findAllByText(/New Task/i);
   
   const deleteBtn = screen.getByRole('button', {  name: /delete/i});
   fireEvent.click(deleteBtn);
-  await new Promise((r) => setTimeout(r, 10000));
-  expect(task).not.toBeInTheDocument();
+  expect(task[2]).not.toBeInTheDocument();
 })
