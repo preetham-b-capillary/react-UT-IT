@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import * as React from "react";
 
-function App() {
+function Login({ onSubmit = () => {} }) {
+  function handleSubmit(event) {
+    event.preventDefault();
+    const { username, password } = event.target.elements;
+
+    onSubmit({
+      username: username.value,
+      password: password.value,
+    });
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="username-field">Username</label>
+        <input id="username-field" name="username" type="text" />
+      </div>
+      <div>
+        <label htmlFor="password-field">Password</label>
+        <input id="password-field" name="password" type="password" />
+      </div>
+      <div>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
   );
 }
 
-export default App;
+export default Login;
